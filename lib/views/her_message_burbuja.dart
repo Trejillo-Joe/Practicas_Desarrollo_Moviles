@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/widgets/image_burbuja.dart';
 import 'package:flutter_application_2/widgets/messages_Burbuja.dart';
 
 class HerMessageBubbleView extends StatelessWidget {
   final ColorScheme colorScheme;
-  final String message;
+  final String urlImageBurbuja;
   const HerMessageBubbleView({
     super.key,
     required this.colorScheme,
-    required this.message,
+    required this.urlImageBurbuja,
   });
 
   @override
@@ -15,7 +16,8 @@ class HerMessageBubbleView extends StatelessWidget {
     return MessageBubble(
       alignment: CrossAxisAlignment.start,
       colorBubble: colorScheme.secondary,
-      child: Text(message, style: TextStyle(color: colorScheme.onSecondary)),
+      child: null,
+      urlImageBurbuja: urlImageBurbuja,
     );
   }
 }
