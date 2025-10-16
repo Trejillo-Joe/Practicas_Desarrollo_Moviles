@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/views/My_message_burbuja.dart';
 import 'package:flutter_application_2/views/her_message_burbuja.dart';
+import 'package:flutter_application_2/widgets/message_field_box.dart';
+import 'package:flutter_application_2/widgets/messages_Burbuja.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({super.key});
@@ -31,8 +33,12 @@ class ChatView extends StatelessWidget {
               ),
             ),
           ),
+          const MessageFieldBox(),
         ],
       ),
     );
   }
 }
+
+
+
