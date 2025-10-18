@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/widgets/image_burbuja.dart';
+import 'package:flutter_application_2/presentacion/widgets/image_burbuja.dart';
 
 class MessageBubble extends StatelessWidget {
   final CrossAxisAlignment alignment;

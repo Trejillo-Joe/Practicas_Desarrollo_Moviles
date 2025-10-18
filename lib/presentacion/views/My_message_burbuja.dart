@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/widgets/messages_Burbuja.dart';
+import 'package:flutter_application_2/presentacion/widgets/messages_Burbuja.dart';
 
 class MyMessageBubbleView extends StatelessWidget {
   final ColorScheme colorScheme;
