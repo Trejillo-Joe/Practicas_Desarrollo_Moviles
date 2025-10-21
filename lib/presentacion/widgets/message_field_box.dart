@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 
-class MessageFieldBox extends StatelessWidget {
-  const MessageFieldBox({super.key});
+class MessageFieldBox extends StatefulWidget {
+  final void Function(String value) onValue;
+  const MessageFieldBox({super.key, required this.onValue});
+
+  State<MessageFieldBox> createState() => _MessageFieldBoxState();
+
+}
+
+class _MessageFieldBoxState extends State<MessageFieldBox> {
+  final TextEditingController textController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    textController.dispose();
+    focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController textController = TextEditingController();
-    final FocusNode focusNode = FocusNode();
     final colors = Theme.of(context).colorScheme;
     return TextFormField(
       controller: textController,
@@ -14,9 +28,14 @@ class MessageFieldBox extends StatelessWidget {
       decoration: _customInputDecoration(
         colors: colors,
         onSend: () {
-          print('Quiero enviar este mensaje ${textController.text}');
-          textController.clear();
-          focusNode.requestFocus();
+          final textValue = textController.value.text;
+          print(textController.value.text);
+          if (textValue.isNotEmpty) {
+            //print(textValue);
+            widget.onValue(textValue);
+            textController.clear();
+            focusNode.requestFocus();
+          }
         },
       ),
       onTapOutside: (event) {
@@ -40,7 +59,12 @@ class MessageFieldBox extends StatelessWidget {
         enabledBorder: _customOutlineInputBorder(colors.primary),
         focusedBorder: _customOutlineInputBorder(colors.primary),
         hintText: 'Escribe un mensaje',
-        suffixIcon: IconButton(onPressed: onSend, icon: Icon(Icons.send)),
+        suffixIcon: IconButton(
+          onPressed: () {
+            onSend();
+            widget.onValue(textController.text);
+          }, 
+          icon: Icon(Icons.send)),
       );
 
    OutlineInputBorder _customOutlineInputBorder(Color color) =>

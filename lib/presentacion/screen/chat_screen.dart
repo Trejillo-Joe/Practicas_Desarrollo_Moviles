@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/presentacion/views/chat_view.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -10,10 +11,10 @@ class ChatScreen extends StatelessWidget {
         title: const Text('Trejillo Chat'),centerTitle: true,
         leading: CircleAvatar(
           backgroundImage: NetworkImage(
-              'https://www.tvazteca.com/aztecauno/famosos/se-ve-belinda-sin-maquillaje-a-sus-36-anos-estas-fotos-impacto-a-sus-fans'),
+              'https://www.de10.com.mx/resizer/v2/ODRWYGEXJZHMXLGUWXJ2Y6MAEY.PNG?auth=71da74c19c092022f45db4105303f01965a3466812bd17534abbf3cc279de6d1&smart=true&height=620'),
         ),
       ),
-      body: Placeholder(),
+      body: ChatView(),
     
     );
   }
