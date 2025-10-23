@@ -1,14 +1,18 @@
+// ...existing code...
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/domain/entities/message.dart';
 import 'package:flutter_application_2/presentacion/views/My_message_burbuja.dart';
 import 'package:flutter_application_2/presentacion/views/her_message_burbuja.dart';
 import 'package:flutter_application_2/presentacion/widgets/message_field_box.dart';
 import 'package:flutter_application_2/providers/chat_provider.dart';
+
+
 import 'package:provider/provider.dart';
 //import 'package:flutter_application_2/widgets/messages_Burbuja.dart';
 
 class ChatView extends StatelessWidget {
-  const ChatView({super.key});
+  final void Function(String value) onValue;
+  const ChatView({super.key, required this.onValue});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +32,7 @@ class ChatView extends StatelessWidget {
                       ? HerMessageBubbleView(
                           colorScheme: colorScheme,
                           urlImageBurbuja:
-                          chatProvider.messagesList[index].imageUrl!
-                          ,
+                              chatProvider.messagesList[index].imageUrl!,
                         )
                       : MyMessageBubbleView(
                           colorScheme: colorScheme,
@@ -39,14 +42,10 @@ class ChatView extends StatelessWidget {
               ),
             ),
           ),
-          MessageFieldBox(
-            onValue: (String value) { chatProvider.sendMessage(value); },
-          ),
+          MessageFieldBox(onSend: (value) => chatProvider.sendMessage(value), onValue: (String value) {  },),
         ],
       ),
     );
   }
 }
-
-
-
+// ...existing code...

@@ -14,7 +14,7 @@ class ChatScreen extends StatelessWidget {
               'https://www.de10.com.mx/resizer/v2/ODRWYGEXJZHMXLGUWXJ2Y6MAEY.PNG?auth=71da74c19c092022f45db4105303f01965a3466812bd17534abbf3cc279de6d1&smart=true&height=620'),
         ),
       ),
-      body: ChatView(),
+      body: ChatView(onValue: (String value) {  },),
     
     );
   }

@@ -28,11 +28,9 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
       decoration: _customInputDecoration(
         colors: colors,
         onSend: () {
-          final textValue = textController.value.text;
-          print(textController.value.text);
-          if (textValue.isNotEmpty) {
-            //print(textValue);
-            widget.onValue(textValue);
+          print('quiero envirar el mensaje = ${textController.value.text}');
+          if (textController.value.text.isNotEmpty) {
+            widget.onValue(textController.value.text);
             textController.clear();
             focusNode.requestFocus();
           }
@@ -59,12 +57,7 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
         enabledBorder: _customOutlineInputBorder(colors.primary),
         focusedBorder: _customOutlineInputBorder(colors.primary),
         hintText: 'Escribe un mensaje',
-        suffixIcon: IconButton(
-          onPressed: () {
-            onSend();
-            widget.onValue(textController.text);
-          }, 
-          icon: Icon(Icons.send)),
+        suffixIcon: IconButton(onPressed: () {onSend(); widget.onValue(textController.text);}, icon: Icon(Icons.send)),
       );
 
    OutlineInputBorder _customOutlineInputBorder(Color color) =>
