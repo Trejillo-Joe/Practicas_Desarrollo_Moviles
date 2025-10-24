@@ -42,7 +42,19 @@ class ChatView extends StatelessWidget {
               ),
             ),
           ),
-          MessageFieldBox(onSend: (value) => chatProvider.sendMessage(value), onValue: (String value) {  },),
+          Padding(
+            padding: EdgeInsetsDirectional.symmetric(
+              horizontal: 10,
+              vertical: 10,
+            ),
+            child: MessageFieldBox(
+              onValue: onValue,
+              onSend: (value) async {
+                print('Quiero enviar el mensaje desde chat view $value');
+                await chatProvider.sendMessage(value);
+              },
+            ),
+          ),
         ],
       ),
     );

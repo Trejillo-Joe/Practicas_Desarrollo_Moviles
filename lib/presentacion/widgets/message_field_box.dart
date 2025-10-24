@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatefulWidget {
-  final void Function(String value) onValue;
-  const MessageFieldBox({super.key, required this.onValue});
+  final Function(String) onSend;
+  const MessageFieldBox({super.key, required this.onSend, required void Function(String value) onValue});
 
+  @override
   State<MessageFieldBox> createState() => _MessageFieldBoxState();
-
 }
 
 class _MessageFieldBoxState extends State<MessageFieldBox> {
-  final TextEditingController textController = TextEditingController();
-  final FocusNode focusNode = FocusNode();
-
-  @override
-  void dispose() {
-    textController.dispose();
-    focusNode.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final TextEditingController textController = TextEditingController();
+    final FocusNode focusNode = FocusNode();
     final colors = Theme.of(context).colorScheme;
     return TextFormField(
       controller: textController,
@@ -28,42 +20,42 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
       decoration: _customInputDecoration(
         colors: colors,
         onSend: () {
-          print('quiero envirar el mensaje = ${textController.value.text}');
+          print('quiero enviar el mensaje ${textController.text}');
           if (textController.value.text.isNotEmpty) {
-            widget.onValue(textController.value.text);
+            widget.onSend(textController.value.text);
             textController.clear();
             focusNode.requestFocus();
           }
         },
       ),
       onTapOutside: (event) {
-        print('Quiero saber que haces $event');
+        print('Quieren Saber que se hace $event');
         focusNode.unfocus();
       },
       onFieldSubmitted: (value) {
-        print('Pus locochon pa que no se enchile $value');
+        print(
+          'Aqui se puso un enter bien locochon por que despues nos enojamos $value',
+        );
+        widget.onSend(value);
         textController.clear();
         focusNode.requestFocus();
       },
     );
   }
 
-
   InputDecoration _customInputDecoration({
     required ColorScheme colors,
     required VoidCallback onSend,
-
   }) => InputDecoration(
-        enabledBorder: _customOutlineInputBorder(colors.primary),
-        focusedBorder: _customOutlineInputBorder(colors.primary),
-        hintText: 'Escribe un mensaje',
-        suffixIcon: IconButton(onPressed: () {onSend(); widget.onValue(textController.text);}, icon: Icon(Icons.send)),
-      );
+    enabledBorder: _customOutlineInputBorder(colors.primary),
+    focusedBorder: _customOutlineInputBorder(colors.primaryContainer),
+    hintText: 'Envia tu pregunta: ',
+    suffixIcon: IconButton(onPressed: onSend, icon: const Icon(Icons.send)),
+  );
 
-   OutlineInputBorder _customOutlineInputBorder(Color color) =>
-    OutlineInputBorder(
-        borderRadius: BorderRadius.circular(100),
+  OutlineInputBorder _customOutlineInputBorder(Color color) =>
+      OutlineInputBorder(
         borderSide: BorderSide(color: color),
+        borderRadius: BorderRadius.circular(20),
       );
-    
-  }
+}

@@ -2,7 +2,6 @@ class YesNoAnswer {
   final String answer;
   final bool forced;
   final String image;
-
   YesNoAnswer({
     required this.answer,
     required this.forced,
@@ -10,8 +9,8 @@ class YesNoAnswer {
   });
 
   factory YesNoAnswer.fromJson(Map<String, dynamic> json) => YesNoAnswer(
-        answer: json['answer'],
-        forced: json['forced'],
-        image: json['image'],
-      );
+    answer: json['answer'],
+    forced: json['forced'],
+    image: json['image'],
+  );
 }
